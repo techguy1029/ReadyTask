@@ -31,7 +31,7 @@ namespace ReadyTask.Controllers
         {
             TaskItem task = _context.TaskItems.Include(t =>t.AssignedUser).FirstOrDefault(t => t.Id == id);
             //post to git
-            return View();
+            return View(task);
         }
 
         // GET: TaskItem/Create
