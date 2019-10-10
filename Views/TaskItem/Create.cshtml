@@ -1,0 +1,31 @@
+﻿@using ReadyTask.ViewModels
+@model TaskItemCreate
+
+@{ 
+    TaskItem task = Model.TaskItem;
+    List<ReadyTaskUser> users = Model.ReadyTaskUsers;
+    <h2>Create</h2>
+    <h4>Task</h4>
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="TaskItem.Title" class="control-label"></label>
+            <input asp-for="TaskItem.Title" name="Title" class="form-control"/>
+        </div> 
+        <div class="form-group">
+            <label asp-for="TaskItem.Description" class="control-label"></label>
+            <input asp-for="TaskItem.Description" name="Description" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Assigned User</label>
+            <select class="form-control" asp-for="TaskItem.AssignedUserId" name="AssignedUsedId">
+                @foreach(ReadyTaskUser user in Model.ReadyTaskUsers)
+                {
+                    <option value="@(user.Id) @(user.FirstName) @(user.LastName)"></option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <input type ="submit" value="Create" class="btn btn-default"/>
+        </div>
+    </form>
+   }

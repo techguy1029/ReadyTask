@@ -5,11 +5,14 @@
         @foreach(TaskItem task in Model)
         {
             <li>
-                <div>@task.Title</div>
+                <h2>@task.Title</h2>
                 @if (task.AssignedUserId != null)
                 {
-                    <div>@task.AssignedUser.FirstName</div>
-                }
+                    <p>@task.AssignedUser.FirstName</p>
+                    <p>@task.AssignedUserId</p>
+                } 
+                <p>Task ID:@task.Id</p>
+                <p>Task Description:@task.Description</p>
             </li>
         }
     </ul>

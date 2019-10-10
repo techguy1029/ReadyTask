@@ -1,0 +1,41 @@
+﻿@using ReadyTask.ViewModels
+@model TaskItemEdit
+
+@{
+    TaskItem task = Model.TaskItem;
+    List<ReadyTaskUser> users = Model.ReadyTaskUsers;
+    <h2>Edit</h2>
+    <h4>Task</h4>
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label asp-for="TaskItem.Title" class="control-label"></label>
+            <input asp-for="TaskItem.Title" name="Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="TaskItem.Description" class="control-label"></label>
+            <input asp-for="TaskItem.Description" name="Description" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Assigned User</label>
+            <select class="form-control" asp-for="TaskItem.AssignedUserId" name="AssignedUsedId">
+
+                <option value="">None</option>
+                @foreach (ReadyTaskUser user in Model.ReadyTaskUsers)
+                {
+                    if (Model.TaskItem.AssignedUserId != null)
+                    {
+                        <option selected value="@(user.Id) @(user.FirstName) @(user.LastName)"></option>
+                    }
+                    else
+                    {
+                        <option value="@(user.Id) @(user.FirstName) @(user.LastName)"></option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
+
+    }
